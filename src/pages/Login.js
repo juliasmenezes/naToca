@@ -3,98 +3,116 @@ import {
   SafeAreaView,
   View,
   Text,
+  TextInput,
   TouchableOpacity,
   Image,
   ImageBackground,
   KeyboardAvoidingView,
   Platform,
-  Alert,
+  ScrollView,
 } from "react-native";
-
+import { Feather } from "@expo/vector-icons";
 import styles from "./Login.styles";
-import CustomInput from "../components/CustomInput";
-import CustomButton from "../components/CustomButton";
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
-  function handleLogin() {
-    if (!email.trim() || !senha.trim()) {
-      Alert.alert("Campos incompletos", "Por favor, preencha o e-mail e a senha.");
-      return;
-    }
-
-    if (!email.includes("@") || !email.includes(".")) {
-      Alert.alert("E-mail inválido", "Por favor, digite um e-mail válido.");
-      return;
-    }
-
-    if (senha.length < 6) {
-      Alert.alert("Senha inválida", "A senha deve conter pelo menos 6 caracteres.");
-      return;
-    }
-
-    navigation.navigate("Welcome");
-  }
-
   return (
-    <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView
-        style={styles.content}
-        behavior={Platform.OS === "ios" ? "padding" : undefined}
-      >
-        <ImageBackground
-          source={require("../../assets/patasEscuro.png")}
-          resizeMode="repeat"
-          style={styles.background}
-          imageStyle={styles.backgroundImage}
-        />
-
-        <View style={styles.logoArea}>
-          <View style={styles.logoCircle}>
-            <Image
-              source={require("../../assets/logo.png")}
-              style={styles.logo}
-              resizeMode="contain"
-            />
-          </View>
-        </View>
-
-        <Text style={styles.title}>Entrar</Text>
-
-        <View style={styles.form}>
-          <CustomInput
-            label="Email:"
-            placeholder="nome@aluno.senai.br"
-            keyboardType="email-address"
-            value={email}
-            onChangeText={setEmail}
-          />
-
-          <CustomInput
-            label="Senha:"
-            placeholder="********"
-            secureTextEntry
-            value={senha}
-            onChangeText={setSenha}
-          />
-
-          <CustomButton
-            title="Entrar"
-            onPress={handleLogin}
-          />
-
-          <TouchableOpacity
-            onPress={() => navigation.navigate("Cadastro")}
+    <ImageBackground
+      source={require("../../assets/patasEscuro.png")}
+      style={{ flex: 1 }}
+      resizeMode="repeat"
+    >
+      <SafeAreaView style={{ flex: 1 }}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          style={{ flex: 1 }}
+        >
+          <ScrollView
+            contentContainerStyle={styles.scrollContent}
+            showsVerticalScrollIndicator={false}
           >
-            <Text style={styles.footer}>
-              Não possui conta?
-              <Text style={styles.link}> Cadastre-se!</Text>
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+            <View style={styles.logoCircleContainer}>
+              <View style={styles.logoCircle}>
+                <Image
+                  source={require("../../assets/logo.png")}
+                  style={styles.logo}
+                  resizeMode="contain"
+                />
+              </View>
+            </View>
+
+            <View style={styles.headerTextContainer}>
+              <Text style={styles.title}>Entrar</Text>
+              <Text style={styles.subtitle}>
+                Entre na sua conta para continuar
+              </Text>
+            </View>
+
+            <View style={styles.card}>
+              <View style={styles.inputGroup}>
+                <Text style={styles.label}>E-mail</Text>
+                <View style={styles.inputWrapper}>
+                  <Feather
+                    name="mail"
+                    size={20}
+                    color="#94A3B8"
+                    style={styles.inputIcon}
+                  />
+                  <TextInput
+                    style={styles.input}
+                    placeholder="seu@email.com"
+                    placeholderTextColor="#94A3B8"
+                    value={email}
+                    onChangeText={setEmail}
+                    keyboardType="email-address"
+                    autoCapitalize="none"
+                  />
+                </View>
+              </View>
+
+              <View style={styles.inputGroup}>
+                <Text style={styles.label}>Senha</Text>
+                <View style={styles.inputWrapper}>
+                  <Feather
+                    name="lock"
+                    size={20}
+                    color="#94A3B8"
+                    style={styles.inputIcon}
+                  />
+                  <TextInput
+                    style={styles.input}
+                    placeholder="••••••••"
+                    placeholderTextColor="#94A3B8"
+                    value={senha}
+                    onChangeText={setSenha}
+                    secureTextEntry
+                  />
+                </View>
+              </View>
+
+              <TouchableOpacity
+                style={styles.btnPrimary}
+                onPress={() => navigation?.navigate("HomeTutor")}
+                activeOpacity={0.8}
+              >
+                <Text style={styles.btnPrimaryText}>Entrar</Text>
+                <Feather name="arrow-right" size={20} color="#1E1B4B" />
+              </TouchableOpacity>
+
+              <View style={styles.footerLinkContainer}>
+                <Text style={styles.footerText}>Não tem conta? </Text>
+                <TouchableOpacity
+                  onPress={() => navigation?.navigate("Cadastro")}
+                >
+                  <Text style={styles.footerLinkBold}>Cadastre-se</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </ScrollView>
+        </KeyboardAvoidingView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 }
