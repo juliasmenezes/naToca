@@ -5,50 +5,45 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#FFF",
   },
-
   background: {
     flex: 1,
   },
-
+  backgroundImage: {
+    opacity: 100,
+  },
   content: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: 35,
   },
-
   logo: {
-    width: 230,
-    height: 230,
-    marginBottom: 10,
+    width: 200,
+    height: 120,
+    marginBottom: 30,
   },
-
   title: {
-    fontSize: 28,
+    fontSize: 22,
     fontWeight: "bold",
-    color: "#7A33D4",
-    marginBottom: 45,
+    color: "#4A154B",
+    marginBottom: 35,
   },
-
   button: {
     width: "100%",
-    height: 55,
-    backgroundColor: "#7A33D4",
-    borderRadius: 30,
+    height: 48,
+    backgroundColor: "#8A2BE2",
+    borderRadius: 24,
     justifyContent: "center",
     alignItems: "center",
-    elevation: 5,
+    marginBottom: 15,
+    elevation: 3,
   },
-
+  buttonCadastrar: {
+    backgroundColor: "#8A2BE2",
+  },
   buttonText: {
     color: "#FFF",
-    fontSize: 22,
-    fontWeight: "600",
-  },
-
-  smallText: {
-    fontSize: 11,
-    color: "#A36AE6",
-    marginTop: 4,
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });

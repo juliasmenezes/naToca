@@ -17,22 +17,17 @@ export default function CustomInput({
       {label && <Text style={styles.label}>{label}</Text>}
 
       <TextInput
-        style={[
-          styles.input,
-          error ? styles.inputError : null,
-        ]}
+        style={[styles.input, error ? styles.inputError : null]}
         value={value}
         onChangeText={onChangeText}
         placeholder={placeholder}
-        placeholderTextColor="#999"
+        placeholderTextColor="#B0A8B9"
         secureTextEntry={secureTextEntry}
         keyboardType={keyboardType}
         autoCapitalize={autoCapitalize}
       />
 
-      {error ? (
-        <Text style={styles.error}>{error}</Text>
-      ) : null}
+      {error ? <Text style={styles.error}>{error}</Text> : null}
     </View>
   );
 }

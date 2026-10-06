@@ -42,7 +42,7 @@ export default function HomeCuidador({ navigation }) {
       {/* TopBar */}
       <View style={styles.topBar}>
         <Image
-          source={require("../../assets/logo.png")}
+          source={require("../../../assets/logo.png")}
           style={styles.logoHeader}
           resizeMode="contain"
         />
